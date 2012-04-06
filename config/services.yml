@@ -1,0 +1,99 @@
+gpsies:
+  response: Service/Parser/Gpsies
+  action: http://www.gpsies.com/trackList.do
+  method: post
+  adaptr:
+    params:
+      q: searchText
+      l: city
+      country: country
+      minLength: minLength
+      maxLength: maxLength
+      minHeight: minHeight
+      maxHeight: maxHeight
+      trackTypes: trackTypes
+      trackAttributes: gpsRecorded
+    alias:
+      trackTypes:
+        trekking: trekking
+        walking: walking
+        jogging: jogging
+        biking: biking
+        racingbike: racingbike
+        mountainbiking: mountainbiking
+        snowshoe: snowshoe
+        skiingNordic: skiingNordic
+        skiingAlpine: skiingAlpine
+        skiingTour: skiingRandonnee
+        climbing: climbing
+
+wikiloc:
+  response: Service/Parser/Wikiloc
+  method: get
+  action: http://wikiloc.com/wikiloc/find.do
+  adaptr:
+    # tick: comma separated trackTypes
+    params:
+      q: q
+      minLength: lfr
+      maxLength: lto
+      trackTypes: act
+    alias:
+      trackTypes:
+        trekking: 1
+        walking: 43
+        jogging: 21
+        biking: 29
+        racingbike: 47
+        mountainbiking: 2
+        snowshoe: 17
+        skiingNordic: 13
+        skiingAlpine: 4
+        skiingTour: 40
+        climbing: 24
+
+mapmyfitness:
+  method: get
+  action: http://www.mapmyfitness.com/routes/
+  adaptr:
+    params:
+      q: keywords
+      l: location
+      minLength: distance_around
+      trackTypes: route_type_id
+      route_distance_type: atleast
+      mobile_flag: 1
+    alias:
+      trackTypes:
+        trekking: 7
+        walking: 3
+        jogging: 1
+        biking: 2
+        mountainbiking: 6305
+        # horseRiding: 10
+        # skating: 4
+        # swimming; 18
+        
+redtrails:
+  method: get
+  action: http://redtrails.com/search.php
+  adaptr:
+    # tick: concatenated trackTypes
+    params:
+      q: s
+      l: loc
+      minLength: d
+      trackTypes: e
+    alias:
+      trackTypes:
+        trekking: 1
+        biking: 3
+        mountainbiking: 4
+        snowshoe: 5
+        skiingTour: 6
+        climbing: 0
+
+# http://www.localhikes.com/search.asp
+# http://www.trailguru.com
+# http://triptracker.net
+# http://www.wta.org/go-hiking/map
